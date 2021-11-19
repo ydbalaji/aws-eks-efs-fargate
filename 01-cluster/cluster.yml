@@ -1,0 +1,66 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eksfgcluster
+  region: us-east-1
+  version: '1.21'
+
+vpc:
+  securityGroup: sg-1234567890
+  subnets:
+    private:
+      us-east-1a:
+        id: subnet-1234567890 # Private subnet
+      us-east-1b:
+        id: subnet-1234567890 # Public subnet
+
+iam:
+  serviceRoleARN: "EKS Role ARN"
+
+cloudWatch:
+  clusterLogging:
+    enableTypes:
+      - audit
+      - authenticator
+      - api
+      - controllerManager
+      - scheduler
+
+fargateProfiles:
+  - name: fp-default
+    selectors:
+      - namespace: default
+      - namespace: kube-system
+    subnets:
+      - subnet-1234567890 # Private subnet 
+  - name: fp-drupal
+    selectors:
+      - namespace: drupal
+        labels:
+          env: drupal
+          application: drupal
+          checks: passed
+    subnets:
+      - subnet-1234567890 # Private subnet 
+  - name: fp-wordpress
+    selectors:
+      - namespace: wordpress
+      - namespace: kube-system
+        labels:
+          env: wordpress
+          application: wordpress
+          checks: passed
+    subnets:
+      - subnet-1234567890 # Private subnet 
+  - name: fp-mysql
+    selectors:
+      - namespace: mysql
+      - namespace: kube-system
+        labels:
+          env: mysql
+          application: mysql
+          checks: passed
+    subnets:
+      - subnet-1234567890 # Private subnet 

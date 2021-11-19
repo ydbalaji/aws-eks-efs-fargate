@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-mysql
+  namespace: mysql
+spec:
+  ports: 
+    - name: mysql-57
+      port: 3306
+      protocol: TCP
+  selector: 
+    app: app-mysql
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: app-mysql
+  name: "deployment-mysql"
+  namespace: mysql
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-mysql
+  template: 
+    metadata: 
+      labels: 
+        app: app-mysql
+    spec:
+      # volumes: 
+      #   - name: vol-app-mysql
+      #     persistentVolumeClaim: 
+      #       claimName: efs-claim
+      containers:
+        - image: "mysql:5.7"
+          name: app-mysql-57
+          ports: 
+            - containerPort: 3306
+              name: app-mysql
+              protocol: TCP
+          # volumeMounts: 
+          #   - mountPath: /var/lib/mysql
+          #     name: vol-app-mysql
+          env: 
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: drupal_9_database

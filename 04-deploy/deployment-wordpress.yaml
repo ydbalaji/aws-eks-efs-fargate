@@ -1,0 +1,55 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wordpress
+  labels:
+    name: wordpress
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/target-type: ip
+  name: "service-wordpress"
+  namespace: "wordpress"
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: "app-wordpress"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: 
+    app: app-wordpress
+  name: "deployment-wordpress"
+  namespace: "wordpress"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-wordpress
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app-wordpress
+    spec:
+      volumes:
+        - name: vol-wordpress-uploads
+          persistentVolumeClaim: 
+            claimName: efs-claim-2
+      containers:
+        - name: app-wordpress-5
+          image: ydbalaji/kubernetes-wordpress-5:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html/web/wp-content/uploads
+              name: vol-wordpress-uploads
+              subPath: wordpress-uploads

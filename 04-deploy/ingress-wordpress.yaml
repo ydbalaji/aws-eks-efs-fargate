@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "ingress-wordpress"
+  namespace: "wordpress"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/security-groups: sg-12345 # Security group if
+    alb.ingress.kubernetes.io/subnets: subnet-12345 # private and public subnets
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+  labels:
+    app: ingress-wordpress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+                serviceName: "service-wordpress"
+                servicePort: 80
