@@ -43,6 +43,9 @@ WOF_EFS_FS_ID=$(aws efs create-file-system \
   --query "FileSystemId")
 ```
 
+![EFS](../images/aws-efs.png) 
+
+
 ### Create an EFS access point:
 
 ```
@@ -54,6 +57,9 @@ WOF_EFS_AP=$(aws efs create-access-point \
   --query 'AccessPointId' \
   --output text)
 ```
+
+![EFS](../images/aws-efs-ap-id.png) 
+
 
 Note: If need more access point, excute the above step with updating the root-directory Path and it will create new access point in same file system
 

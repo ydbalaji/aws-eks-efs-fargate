@@ -66,4 +66,12 @@ The output of this command will be similar to this one:
 NAME            HOSTS   ADDRESS                                                                 PORTS AGE
 ingress-drupal    *     5e07dbe1-drupal-druingr-2e9-113757324.us-east-2.elb.amazonaws.com       80 20s
 ingress-wordpress *     5e07dbe1-wordpress-wordingr-2e9-113757324.us-east-2.elb.amazonaws.com   80 40s
-```# Sample Application deployment
+```
+## Sample Application Output (Drupal/Wordpress)
+
+### Drupal
+
+![Drupal](../images/aws-eks-drupal.png) 
+
+### Wordpress
+![Wordpress](../images/aws-eks-wp.png) 

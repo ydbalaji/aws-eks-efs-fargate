@@ -21,7 +21,7 @@ You'll see several lines of output as the cluster and Fargate profile are create
 ```
 [✓]  EKS cluster "eksfgcluster" in "us-east-1" region is ready
 ```
-
+![aws eks cluster](../images/aws-eks-cluster.png) 
 eksctl created a kubectl config file in ~/.kube or added the new cluster's configuration within an existing config file in ~/.kube.
 
 2. Test your configuration.
@@ -48,14 +48,16 @@ NAME                                                    STATUS   ROLES    AGE   
 fargate-ip-192-168-141-147.us-west-2.compute.internal   Ready    <none>   8m3s    v1.18.8-eks-7c9bda   192.168.141.147   <none>        Amazon Linux 2   4.14.209-160.335.amzn2.x86_64   containerd://1.3.2
 fargate-ip-192-168-164-53.us-west-2.compute.internal    Ready    <none>   7m30s   v1.18.8-eks-7c9bda   192.168.164.53    <none>        Amazon Linux 2   4.14.209-160.335.amzn2.x86_64   containerd://1.3.2
 ```
+![aws eks node](../images/aws-eks-node.png) 
 
 ## Step - 1.1
 
 Create Namespace in cluster to differentiate the application
 
-```
-kubectl create namespace fp-default
+``` 
 kubectl create namespace drupal
 kubectl create namespace wordpress
 kubectl create namespace mysql
 ```
+
+![aws eks cluster namespace](../images/aws-eks-cluster-namespace.png) 
