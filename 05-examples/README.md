@@ -25,4 +25,4 @@ We have 4 steps to run the application on AWS EKS Fargate with EFS
 
 # Solution Architect
 
-![aws elk fargate efs](aws-eks-fargate-efs.jpg) 
+![aws elk fargate efs](../images/aws-eks-fargate-efs.jpg) 
