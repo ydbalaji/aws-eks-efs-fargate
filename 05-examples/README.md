@@ -23,3 +23,6 @@ We have 4 steps to run the application on AWS EKS Fargate with EFS
 3. Persistent storage and mount target in AZ
 4. Sample Application deployment (Drupal/Wordpress)
 
+# Solution Architect
+
+![aws elk fargate efs](aws-eks-fargate-efs.jpg) 
