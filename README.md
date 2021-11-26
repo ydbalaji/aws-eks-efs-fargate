@@ -65,3 +65,8 @@ Steps:
 *  [03 - Persistent storage(EFS)](03-persistent-storage)
 *  [04 - Deployment(Drupal, Wordpress and MySQL)](04-deploy)
 *  [05 - Examples](05-examples)
+
+
+# Solution Architect
+
+![aws elk fargate efs](images/aws-eks-fargate-efs.jpg) 
